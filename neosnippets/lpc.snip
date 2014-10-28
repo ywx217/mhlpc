@@ -1,0 +1,260 @@
+snippet     if
+abbr        if () {}
+    if (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet else
+    else {
+        ${0:TARGET}
+    }
+
+snippet elseif
+    else if (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet     ifelse
+abbr        if () {} else {}
+    if (${1:#:condition}) {
+        ${2:TARGET}
+    } else {
+        ${3}
+    }
+
+snippet     for
+abbr        for () {}
+    for (${1} = 0; $1 < ${2}; $1++) {
+        ${0:TARGET}
+    }
+
+snippet     while
+abbr        while () {}
+    while (${1:#:condition}) {
+        ${0:TARGET}
+    }
+
+snippet     do_while
+alias       do
+    do {
+        ${0:TARGET:code}
+    } while (${1:#:condition});
+
+snippet     switch
+abbr        switch () {}
+    switch (${1:#:var}) {
+        case ${2:#:val}:
+            ${0:TARGET}
+            break;
+    }
+
+snippet     function
+alias       func
+abbr        func() {}
+    ${1:void} ${2:#:func_name}(${3:#:args}) {
+        ${0:TARGET}
+    }
+
+snippet     struct
+abbr        struct {}
+    struct ${1:#:name} {
+        ${0:TARGET:data}
+    };
+
+# Typedef struct
+snippet struct_typedef
+    typedef struct ${1:#:name} {
+        ${0:TARGET:data}
+    };
+
+snippet     enum
+abbr        enum {}
+    enum ${1:#:name} {
+        ${0:TARGET}
+    };
+
+# #include <...>
+snippet inc
+alias   #inc, #include
+    #include <${1:stdio}.h>${0}
+# #include "..."
+snippet inc2
+alias   #inc2, #include2
+    #include "${1}.h"${0}
+
+snippet def
+alias   #def, #define
+    #define 
+
+# Include-Guard
+snippet once
+abbr include-guard
+    #ifndef ${1:SYMBOL}
+        #define $1
+
+        ${0:TARGET}
+    #endif /* end of include guard */
+
+# Ternary conditional operator
+snippet conditional
+    (${1:#:condition}) ? ${2:#:a} : ${3:#:b}
+
+snippet printf
+abbr    printf("...\n", ...);
+    printf("${1}\n", ${2});
+
+snippet comment
+alias /*
+    /* ${1:#:comment} */
+    ${0}
+
+snippet sizeof
+alias size
+    sizeof(${0:TARGET})
+
+
+################################################################################
+# MHXY snippets
+################################################################################
+
+snippet mapping
+alias mp
+options head
+    mapping ${1:map} = ([${2:#:elements}]);
+
+snippet array
+alias ar
+options head
+    ${1:mixed} ${2:a} = ({${3:#:elements}});
+
+snippet deflog
+options head
+    #define ${1:LOG}_FILE "${2:#:file_name}"
+    #define $1(g) log_file($1_FILE, sprintf("[%s] %s\n", short_time(), g))
+
+snippet logfiletime
+abbr log_file(file, sprintf(fmt, ...))
+alias lft
+options head
+    log_file(${1:filename}, sprintf("[%s] ${2:fmt}\n", short_time(), args))
+
+snippet cmdfun
+options head
+    void _X_${1:#:function_name}(int usernum, string cArg)
+    {
+        ${0:TARGET}
+    }
+
+snippet DECLEAR_CONF
+alias dcv
+options head
+    DECLARE_CONF(g${1:ConfVar}, ${2:#:default}, "${3:#:配置变量说明}")
+
+snippet DECLARE_RUN_VAR
+alias drv
+options head
+    DECLARE_RUN_VAR(g${1:RunVar}, ${2:#:default})
+
+snippet DECLARE_PERM_VAR
+alias dpv
+options head
+    DECLARE_PERM_VAR(g${1:PermVar}, ${2:#:default})
+
+snippet call
+options head
+    ${1:file}->${2:func}(${3});
+
+snippet callfile
+alias cf
+options head
+    "${1:file}"->${2:func}(${3});
+
+snippet debugf
+alias dmf
+options head
+abbr debug_message(sprintf(...));
+    debug_message(sprintf("${1:#:format}\n", ${2:args}));
+
+snippet sprintf
+alias spf
+options word
+abbr sprintf(fmt, args);
+    sprintf(${1:fmt}, ${2:args})
+
+snippet ifdef
+alias ifd
+abbr if(!undefinedp(x)){...}
+options head
+    if(!undefinedp(${1:x}))
+    {
+        ${0:#:defined}
+    }
+
+snippet ifndef
+alias ifnd
+abbr if(undefinedp(x)){...}
+options head
+    if(undefinedp(${1:x}))
+    {
+        ${0:#:not defined}
+    }
+
+snippet ifint
+abbr if(intp(x)){...}
+alias ifi
+options head
+    if(intp(${1:x}))
+    {
+        ${0:#:is int}
+    }
+
+snippet ifnint
+abbr if(!intp(x)){...}
+alias ifni
+options head
+    if(!intp(${1:x}))
+    {
+        ${0:#:not int}
+    }
+
+
+################################################################################
+# MHXY functions
+################################################################################
+
+snippet getiuser
+abbr SafeGetiUser(...)
+alias giu
+options word
+    SafeGetiUser(${1:usernum}, ${2:key}, ${3:PERMVAR})
+
+snippet setiuser
+abbr SafeSetiUser(...)
+alias siu
+options head
+    SafeSetiUser(${1:usernum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet getcuser
+abbr SafeGetcUser(...)
+alias gcu
+options word
+    SafeGetcUser(${1:usernum}, ${2:key}, ${3:PERMVAR})
+
+snippet setcuser
+abbr SafeSetcUser(...)
+alias scu
+options head
+    SafeSetcUser(${1:usernum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet getmixuser
+abbr SafeGetmixUser(...)
+alias gmu
+options word
+    SafeGetmixUser(${1:usernum}, ${2:key}, ${3:PERMVAR})
+
+snippet setmixuser
+abbr SafeSetmixUser(...)
+alias smu
+options head
+    SafeSetmixUser(${1:usernum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
