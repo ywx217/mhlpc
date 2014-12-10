@@ -1,56 +1,68 @@
 snippet     if
 abbr        if () {}
-    if (${1:#:condition}) {
+    if (${1:#:condition})
+    {
         ${0:TARGET}
     }
 
 snippet else
-    else {
+    else
+    {
         ${0:TARGET}
     }
 
 snippet elseif
-    else if (${1:#:condition}) {
+    else if (${1:#:condition})
+    {
         ${0:TARGET}
     }
 
 snippet     ifelse
 abbr        if () {} else {}
-    if (${1:#:condition}) {
+    if (${1:#:condition})
+    {
         ${2:TARGET}
-    } else {
+    }
+    else
+    {
         ${3}
     }
 
 snippet     for
 abbr        for () {}
-    for (${1:int }${2} = 0; $2 < ${3}; $2++) {
+    for (${1:int }${2} = 0; $2 < ${3}; $2++)
+    {
         ${0:TARGET}
     }
 
 snippet foreach
 alias fe
 abbr foreach (.. in ..) {}
-    foreach (${1} in ${2}) {
+    foreach (${1} in ${2})
+    {
         ${0:TARGET}
     }
 
 
 snippet     while
 abbr        while () {}
-    while (${1:#:condition}) {
+    while (${1:#:condition})
+    {
         ${0:TARGET}
     }
 
 snippet     do_while
 alias       do
-    do {
+    do
+    {
         ${0:TARGET:code}
-    } while (${1:#:condition});
+    }
+    while (${1:#:condition});
 
 snippet     switch
 abbr        switch () {}
-    switch (${1:#:var}) {
+    switch (${1:#:var})
+    {
         case ${2:#:val}:
             ${0:TARGET}
             break;
@@ -59,25 +71,29 @@ abbr        switch () {}
 snippet     function
 alias       func
 abbr        func() {}
-    ${1:void} ${2:#:func_name}(${3:#:args}) {
+    ${1:void} ${2:#:func_name}(${3:#:args})
+    {
         ${0:TARGET}
     }
 
 snippet     struct
 abbr        struct {}
-    struct ${1:#:name} {
+    struct ${1:#:name}
+    {
         ${0:TARGET:data}
     };
 
 # Typedef struct
 snippet struct_typedef
-    typedef struct ${1:#:name} {
+    typedef struct ${1:#:name}
+    {
         ${0:TARGET:data}
     };
 
 snippet     enum
 abbr        enum {}
-    enum ${1:#:name} {
+    enum ${1:#:name}
+    {
         ${0:TARGET}
     };
 
@@ -165,7 +181,8 @@ options head
 
 snippet cmdfun
 options head
-    void _X_${1:#:function_name}(int usernum, string cArg) {
+    void _X_${1:#:function_name}(int usernum, string cArg)
+    {
         ${0:TARGET}
     }
 
@@ -209,7 +226,8 @@ snippet ifdef
 alias ifd
 abbr if(!undefinedp(x)){...}
 options head
-    if(!undefinedp(${1:x})) {
+    if(!undefinedp(${1:x}))
+    {
         ${0:#:defined}
     }
 
@@ -217,7 +235,8 @@ snippet ifndef
 alias ifnd
 abbr if(undefinedp(x)){...}
 options head
-    if(undefinedp(${1:x})) {
+    if(undefinedp(${1:x}))
+    {
         ${0:#:not defined}
     }
 
@@ -225,7 +244,8 @@ snippet ifint
 abbr if(intp(x)){...}
 alias ifi
 options head
-    if(intp(${1:x})) {
+    if(intp(${1:x}))
+    {
         ${0:#:is int}
     }
 
@@ -233,7 +253,8 @@ snippet ifnint
 abbr if(!intp(x)){...}
 alias ifni
 options head
-    if(!intp(${1:x})) {
+    if(!intp(${1:x}))
+    {
         ${0:#:not int}
     }
 
