@@ -24,9 +24,17 @@ abbr        if () {} else {}
 
 snippet     for
 abbr        for () {}
-    for (${1} = 0; $1 < ${2}; $1++) {
+    for (${1:int }${2} = 0; $2 < ${3}; $2++) {
         ${0:TARGET}
     }
+
+snippet foreach
+alias fe
+abbr foreach (.. in ..) {}
+    foreach (${1} in ${2}) {
+        ${0:TARGET}
+    }
+
 
 snippet     while
 abbr        while () {}
@@ -108,9 +116,26 @@ alias /*
     /* ${1:#:comment} */
     ${0}
 
+snippet head
+    /**
+     * Author: ${1:Yang Wenxuan}
+     * Doc   : /design/${2:#:docpath}.xlsx
+     * Desc  : 
+     *     ${0:#:descriptions}
+     */
+
 snippet sizeof
 alias size
+options word
     sizeof(${0:TARGET})
+
+snippet todo
+    // TODO(ddsdd): ${0:#:comment}
+
+snippet inline
+alias ilf
+abbr (: func :)
+    (: ${1:#:function-body} :)${0}
 
 
 ################################################################################
@@ -140,8 +165,7 @@ options head
 
 snippet cmdfun
 options head
-    void _X_${1:#:function_name}(int usernum, string cArg)
-    {
+    void _X_${1:#:function_name}(int usernum, string cArg) {
         ${0:TARGET}
     }
 
@@ -161,13 +185,13 @@ options head
     DECLARE_PERM_VAR(g${1:PermVar}, ${2:#:default})
 
 snippet call
-options head
-    ${1:file}->${2:func}(${3});
+options word
+    ${1:file}->${2:func}(${3})
 
 snippet callfile
 alias cf
-options head
-    "${1:file}"->${2:func}(${3});
+options word
+    "${1:file}"->${2:func}(${3})
 
 snippet debugf
 alias dmf
@@ -185,8 +209,7 @@ snippet ifdef
 alias ifd
 abbr if(!undefinedp(x)){...}
 options head
-    if(!undefinedp(${1:x}))
-    {
+    if(!undefinedp(${1:x})) {
         ${0:#:defined}
     }
 
@@ -194,8 +217,7 @@ snippet ifndef
 alias ifnd
 abbr if(undefinedp(x)){...}
 options head
-    if(undefinedp(${1:x}))
-    {
+    if(undefinedp(${1:x})) {
         ${0:#:not defined}
     }
 
@@ -203,8 +225,7 @@ snippet ifint
 abbr if(intp(x)){...}
 alias ifi
 options head
-    if(intp(${1:x}))
-    {
+    if(intp(${1:x})) {
         ${0:#:is int}
     }
 
@@ -212,8 +233,7 @@ snippet ifnint
 abbr if(!intp(x)){...}
 alias ifni
 options head
-    if(!intp(${1:x}))
-    {
+    if(!intp(${1:x})) {
         ${0:#:not int}
     }
 
@@ -233,6 +253,12 @@ abbr SafeSetiUser(...)
 alias siu
 options head
     SafeSetiUser(${1:usernum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet addiuser
+abbr SafeSetiUser(...)
+alias aiu
+options head
+    SafeAddiUser(${1:usernum}, ${2:key}, ${3:delta}, ${4:PERMVAR});
 
 snippet getcuser
 abbr SafeGetcUser(...)
@@ -258,3 +284,54 @@ alias smu
 options head
     SafeSetmixUser(${1:usernum}, ${2:key}, ${3:value}, ${4:PERMVAR});
 
+snippet getinpc
+abbr SafeGetiNpc(...)
+alias gin
+options word
+    SafeGetiNpc(${1:npcnum}, ${2:key}, ${3:PERMVAR})
+
+snippet setinpc
+abbr SafeSetiNpc(...)
+alias sin
+options head
+    SafeSetiNpc(${1:npcnum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet getcnpc
+abbr SafeGetcNpc(...)
+alias gcn
+options word
+    SafeGetcNpc(${1:npcnum}, ${2:key}, ${3:PERMVAR})
+
+snippet setcnpc
+abbr SafeSetcNpc(...)
+alias scn
+options head
+    SafeSetcNpc(${1:npcnum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet getmixnpc
+abbr SafeGetmixNpc(...)
+alias gmn
+options word
+    SafeGetmixNpc(${1:npcnum}, ${2:key}, ${3:PERMVAR})
+
+snippet setmixnpc
+abbr SafeSetmixNpc(...)
+alias smn
+options head
+    SafeSetmixNpc(${1:npcnum}, ${2:key}, ${3:value}, ${4:PERMVAR});
+
+snippet telluser
+abbr tell_user(...)
+alias tu,tell
+    tell_user(${1:usernum}, ${2:""}, ${3:S_NPC_CHAT});
+
+snippet regopt
+alias ro
+    reg_options(${1:options}, ${2:""}, "${3:#:callback}", ${4:#:cbParam});
+
+snippet regemptyopt
+alias reo
+    reg_options(${1:options}, ${2:"È¡Ïû"});
+
+snippet tellopt
+    tell_opts(${1:usernum}, ${2:npcnum}, ${3:options}, "P N\n${4}");
