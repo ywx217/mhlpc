@@ -49,13 +49,6 @@ function! LpcUtilsInit()
     inoremap <C-L> <C-o>A<CR>
     inoremap ,. ->
 
-    "file encoding
-    set fileencodings=gbk,utf-8,cp936,gb2312,gb18030
-    set termencoding=gbk
-    set fileformat=unix
-    set encoding=utf-8
-
-
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " LookupFile plugin
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -94,7 +87,7 @@ function! LpcFileTypeDetect()
     let mypath = getcwd()
     let n = stridx(mypath, "newtxii")
     if n != -1
-        setf lpc
+        set filetype=lpc
         call LpcUtilsInit()
     endif
 endfunction
