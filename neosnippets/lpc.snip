@@ -134,10 +134,12 @@ alias /*
 
 snippet head
     /**
-     * Author: ${1:Yang Wenxuan}
-     * Doc   : /design/${2:#:docpath}.xlsx
-     * Desc  : 
-     *     ${0:#:descriptions}
+     * Propose  : ${1:#:propose}
+     * Doc      : /design/${2:#:docpath}
+     * Designer : ${3:#:designer}
+     * Coder    : ${4:ddsdd}
+     * Date     : 2015-${5:01}-${6:01}
+     * Desc     :${0:#:descriptions}
      */
 
 snippet sizeof
@@ -341,6 +343,36 @@ alias smn
 options head
     SafeSetmixNpc(${1:npcnum}, ${2:key}, ${3:value}, ${4:PERMVAR});
 
+snippet getiitem
+alias gii
+options word
+    SafeGetiItem(${1:itemnum}, ${2:key})
+
+snippet setiitem
+alias sii
+options head
+    SafeSetiItem(${1:itemnum}, ${2:key});
+
+snippet getcitem
+alias gci
+options word
+    SafeGetcItem(${1:itemnum}, ${2:key})
+
+snippet setcitem
+alias sci
+options head
+    SafeSetcItem(${1:itemnum}, ${2:key});
+
+snippet MDBGetIntArray
+alias mgia
+options word
+    MDBGetIntArray(${1:usernum}, ${2:#:VarName}, ${3:#:pos})
+
+snippet MDBSetIntArray
+alias msia
+options head
+    MDBSetIntArray(${1:usernum}, ${2:#:VarName}, ${3:#:pos}, ${4:#:value});
+
 snippet telluser
 abbr tell_user(...)
 alias tu,tell
@@ -352,7 +384,7 @@ alias ro
 
 snippet regemptyopt
 alias reo
-    reg_options(${1:options}, ${2:"È¡Ïû"});
+    reg_options(${1:options}, ${2:"cancel"});
 
 snippet tellopt
     tell_opts(${1:usernum}, ${2:npcnum}, ${3:options}, "P N\n${4}");
