@@ -134,10 +134,12 @@ alias /*
 
 snippet head
     /**
-     * Author: ${1:Yang Wenxuan}
-     * Doc   : /design/${2:#:docpath}.xlsx
-     * Desc  : 
-     *     ${0:#:descriptions}
+     * Propose  : ${1:#:propose}
+     * Doc      : /design/${2:#:docpath}
+     * Designer : ${3:#:designer}
+     * Coder    : ${4:ddsdd}
+     * Date     : 2015-${5:01}-${6:01}
+     * Desc     :${0:#:descriptions}
      */
 
 snippet sizeof
@@ -341,6 +343,26 @@ alias smn
 options head
     SafeSetmixNpc(${1:npcnum}, ${2:key}, ${3:value}, ${4:PERMVAR});
 
+snippet getiitem
+alias gii
+options word
+    SafeGetiItem(${1:itemnum}, ${2:key})
+
+snippet setiitem
+alias sii
+options head
+    SafeSetiItem(${1:itemnum}, ${2:key});
+
+snippet getcitem
+alias gci
+options word
+    SafeGetcItem(${1:itemnum}, ${2:key})
+
+snippet setcitem
+alias sci
+options head
+    SafeSetcItem(${1:itemnum}, ${2:key});
+
 snippet telluser
 abbr tell_user(...)
 alias tu,tell
@@ -352,7 +374,45 @@ alias ro
 
 snippet regemptyopt
 alias reo
-    reg_options(${1:options}, ${2:"取消"});
+    reg_options(${1:options}, ${2:"cancel"});
 
 snippet tellopt
     tell_opts(${1:usernum}, ${2:npcnum}, ${3:options}, "P N\n${4}");
+
+################################################################################
+# MHXY utils
+################################################################################
+
+# UE log 开始
+snippet log_task_start
+alias lts
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:START}", ${3:#:ring}, TASK_ACT_START, ${4:#:desc});
+
+snippet log_task_start_detail
+alias ltsd
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:START}", ${3:#:ring}, TASK_ACT_START, ${4:#:desc}, ${5:#:tag}, ${6:#:myteam});
+
+# UE log 完成
+snippet log_task_finish
+alias ltf
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:FINISH}", ${3:#:ring}, TASK_ACT_FINISH, ${4:#:desc});
+
+snippet log_task_finish_detail
+alias ltfd
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:FINISH}", ${3:#:ring}, TASK_ACT_FINISH, ${4:#:desc}, ${5:#:tag}, ${6:#:myteam});
+
+# UE log 失败
+# UE log 放弃
+snippet log_task_cancel
+alias ltc
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:CANCEL}", ${3:#:ring}, TASK_ACT_CANCEL, ${4:#:desc});
+
+snippet log_task_cancel_detail
+alias ltcd
+    "char/log"->log_task(UE_LOG_FILE, ${1:usernum}, TASK_LOG_PRE"${2:CANCEL}", ${3:#:ring}, TASK_ACT_CANCEL, ${4:#:desc}, ${5:#:tag}, ${6:#:myteam});
+
+# UE log 超时
+
+
+
+

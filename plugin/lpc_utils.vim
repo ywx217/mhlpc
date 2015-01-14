@@ -1,4 +1,6 @@
 function! LpcUtilsInit()
+    set nospell
+    set noexpandtab
     setlocal dict+=./lpc
     "cscope shortcut mapping
     nnoremap <C-A>s :cs find s <C-R>=expand("<cword>")<CR><CR>
@@ -96,3 +98,4 @@ autocmd BufNewFile,BufRead *.inl,*.c,*.h call LpcFileTypeDetect()
 
 autocmd BufNewFile,BufRead *.C setf cpp
 
+autocmd FileType lpc call LpcUtilsInit()
