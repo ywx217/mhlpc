@@ -363,6 +363,16 @@ alias sci
 options head
     SafeSetcItem(${1:itemnum}, ${2:key});
 
+snippet MDBGetIntArray
+alias mgia
+options word
+    MDBGetIntArray(${1:usernum}, ${2:#:VarName}, ${3:#:pos})
+
+snippet MDBSetIntArray
+alias msia
+options head
+    MDBSetIntArray(${1:usernum}, ${2:#:VarName}, ${3:#:pos}, ${4:#:value});
+
 snippet telluser
 abbr tell_user(...)
 alias tu,tell
